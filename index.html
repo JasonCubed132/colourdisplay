@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Colour display</title>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="2000" height="2000">
+		
+		<script>
+			var canvas = document.getElementById('myCanvas');
+			var context = canvas.getContext("2d");
+			
+			var w = window,
+			d = document,
+			e = d.documentElement,
+			g = d.getElementsByTagName('body')[0],
+			x = w.innerWidth || e.clientWidth || g.clientWidth,
+			y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+			context.canvas.width = x;
+			context.canvas.height = y;
+			
+			var colours = [
+				"rgba(255, 0, 0, 1)",
+				"rgba(0, 255, 0, 1)",
+				"rgba(0, 0, 255, 1)",
+				"rgba(255, 255, 0, 1)",
+				"rgba(0, 255, 255, 1)",
+				"rgba(255, 0, 255, 1)",
+				"rgba(255, 255, 255, 1)",
+				"rgba(0, 0, 0, 1)"
+			]
+			var index = 0;
+			var maxIndex = 7;
+			context.font = '40pt Calibri';
+			context.fillStyle = 'orange';
+			context.fillText('Press space to cycle through colours.', 150, 100);
+    
+			canvas.style.backgroundColor = 'rgba(255, 0, 0, 1)';
+			document.onkeydown = function (e) {
+				e = e || window.event;
+				if (e.keyCode == 32) {
+					canvas.style.backgroundColor = colours[index];
+					index += 1;
+					if (index > maxIndex) {
+						index = 0;
+					}
+				}
+			};
+			 
+		</script>
+	</body>
+</html>
