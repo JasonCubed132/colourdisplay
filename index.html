@@ -20,6 +20,8 @@
 			context.canvas.width = x;
 			context.canvas.height = y;
 			
+			var spacepressed = false;
+			
 			var colours = [
 				"rgba(255, 0, 0, 1)",
 				"rgba(0, 255, 0, 1)",
@@ -40,10 +42,21 @@
 			document.onkeydown = function (e) {
 				e = e || window.event;
 				if (e.keyCode == 32) {
-					canvas.style.backgroundColor = colours[index];
-					index += 1;
-					if (index > maxIndex) {
-						index = 0;
+					if (spacepressed == false) {
+						canvas.style.backgroundColor = colours[index];
+						index += 1;
+						if (index > maxIndex) {
+							index = 0;
+						}
+						spacepressed = true;
+					}
+				}
+			};
+			document.onkeyup = function (e) {
+				e = e || window.event;
+				if (e.keyCode == 32) {
+					if (spacepressed == true) {
+						spacepressed = false;
 					}
 				}
 			};
