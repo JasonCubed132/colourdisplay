@@ -15,11 +15,18 @@
 			d = document,
 			e = d.documentElement,
 			g = d.getElementsByTagName('body')[0],
-			x = w.innerWidth || e.clientWidth || g.clientWidth,
-			y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-			context.canvas.width = x;
-			context.canvas.height = y;
 			
+			changeWindowSize = function () {
+				x = w.innerWidth || e.clientWidth || g.clientWidth,
+				y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+				context.canvas.width = x;
+				context.canvas.height = y;
+			
+				context.font = '40pt Calibri';
+				context.fillStyle = 'orange';
+				context.fillText('Press space to cycle through colours.', 150, 100);
+			}
+			changeWindowSize();
 			var spacepressed = false;
 			
 			var colours = [
@@ -34,10 +41,7 @@
 			]
 			var index = 1;
 			var maxIndex = 7;
-			context.font = '40pt Calibri';
-			context.fillStyle = 'orange';
-			context.fillText('Press space to cycle through colours.', 150, 100);
-    
+			
 			canvas.style.backgroundColor = 'rgba(255, 0, 0, 1)';
 			document.onkeydown = function (e) {
 				e = e || window.event;
@@ -51,6 +55,7 @@
 						spacepressed = true;
 					}
 				}
+				changeWindowSize();
 			};
 			document.onkeyup = function (e) {
 				e = e || window.event;
